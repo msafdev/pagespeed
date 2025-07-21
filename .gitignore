@@ -20,3 +20,6 @@ Thumbs.db
 # Generated files
 /results
 .pagespeed-sessions.json
+
+# Lock files
+package-lock.json
