@@ -1,6 +1,6 @@
 {
   "name": "@msafdev/pagespeed",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Enhanced PageSpeed Insights Checker, now with a CLI",
   "main": "src/index.ts",
   "bin": {
@@ -11,6 +11,14 @@
     "README.md",
     "LICENSE"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msafdev/pagespeed.git"
+  },
+  "homepage": "https://github.com/msafdev/pagespeed#readme",
+  "bugs": {
+    "url": "https://github.com/msafdev/pagespeed/issues"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
