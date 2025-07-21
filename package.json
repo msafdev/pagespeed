@@ -1,0 +1,60 @@
+{
+  "name": "@msafdev/pagespeed",
+  "version": "1.0.1",
+  "description": "Enhanced PageSpeed Insights Checker, now with a CLI",
+  "main": "src/index.ts",
+  "bin": {
+    "pagespeed": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "cli": "ts-node src/index.ts",
+    "cli:yargs": "CLI_PARSER=yargs ts-node src/index.ts",
+    "cli:commander": "ts-node src/index.ts",
+    "interactive": "ts-node src/index.ts interactive",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pagespeed",
+    "performance",
+    "web-vitals",
+    "lighthouse",
+    "cli",
+    "analysis"
+  ],
+  "author": "Msafdev",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@msafdev/pagespeed": "^1.0.1",
+    "axios": "^1.10.0",
+    "chalk": "^5.4.1",
+    "cli-progress": "^3.12.0",
+    "commander": "^14.0.0",
+    "dotenv": "^17.2.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.8.0",
+    "open": "^10.2.0",
+    "ora": "^8.2.0",
+    "path": "^0.12.7",
+    "prompts": "^2.4.2",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.0.15",
+    "@types/prompts": "^2.4.9",
+    "@types/yargs": "^17.0.33",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
