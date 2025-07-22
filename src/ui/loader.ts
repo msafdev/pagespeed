@@ -1,5 +1,5 @@
-import cliProgress from "cli-progress";
-import chalk from "chalk";
+import cliProgress from 'cli-progress';
+import chalk from 'chalk';
 
 export class ProgressTracker {
   private progressBar: cliProgress.SingleBar;
@@ -7,11 +7,11 @@ export class ProgressTracker {
   constructor(private total: number) {
     this.progressBar = new cliProgress.SingleBar({
       format:
-        chalk.white("Progress |") +
-        chalk.cyan("{bar}") +
-        chalk.white("| {percentage}% | {value}/{total} URLs | ETA: {eta}s"),
-      barCompleteChar: "█",
-      barIncompleteChar: "░",
+        chalk.white('Progress |') +
+        chalk.cyan('{bar}') +
+        chalk.white('| {percentage}% | {value}/{total} URLs | ETA: {eta}s'),
+      barCompleteChar: '█',
+      barIncompleteChar: '░',
       hideCursor: true,
     });
   }

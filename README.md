@@ -2,6 +2,28 @@
 
 A simple command-line tool for analyzing website performance using Google PageSpeed Insights API.
 
+## NEW: Github Action
+
+<!-- PAGESPEED_START -->
+
+```typescript
+const pagespeed = {
+  'https://example.com': {
+    strategy: 'mobile',
+    language: 'en',
+    scores: {
+      Performance: 100, // ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
+      Accessibility: 88, // ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▱▱▱
+      'Best Practices': 100, // ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
+      SEO: 90, // ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▱▱
+      PWA: 0, // ▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱
+    },
+  },
+};
+```
+
+<!-- PAGESPEED_END -->
+
 ## Installation
 
 ```bash

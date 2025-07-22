@@ -1,10 +1,10 @@
-import * as fs from "fs-extra";
+import * as fs from 'fs-extra';
 
 export class FileUtils {
   async parseSlugFile(filePath: string): Promise<string[]> {
-    const content = await fs.readFile(filePath, "utf-8");
+    const content = await fs.readFile(filePath, 'utf-8');
 
-    if (filePath.endsWith(".json")) {
+    if (filePath.endsWith('.json')) {
       const json = JSON.parse(content);
       return Array.isArray(json) ? json : [];
     }
@@ -16,6 +16,6 @@ export class FileUtils {
   }
 
   validateFile(filePath: string): boolean | string {
-    return fs.existsSync(filePath) || "File does not exist.";
+    return fs.existsSync(filePath) || 'File does not exist.';
   }
 }

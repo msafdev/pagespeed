@@ -1,7 +1,7 @@
-import * as fs from "fs-extra";
-import path from "path";
-import { Session } from "../config/types";
-import { config } from "../config/config";
+import * as fs from 'fs-extra';
+import path from 'path';
+import { Session } from '../config/types';
+import { config } from '../config/config';
 
 export class SessionManager {
   private sessionsPath = path.join(process.cwd(), config.SESSIONS_FILE);

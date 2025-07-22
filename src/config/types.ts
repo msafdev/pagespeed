@@ -1,4 +1,4 @@
-export type Strategy = "mobile" | "desktop";
+export type Strategy = 'mobile' | 'desktop';
 
 export type AuditCategory = {
   id: string;
@@ -18,7 +18,7 @@ export type CoreWebVitals = {
 export type Result = {
   url: string;
   strategy: Strategy;
-  scores: Record<string, number | "N/A">;
+  scores: Record<string, number | 'N/A'>;
   vitals: CoreWebVitals;
   timestamp: string;
 };
@@ -31,6 +31,6 @@ export type Session = {
 };
 
 export type AnalysisData = {
-  scores: Record<string, number | "N/A">;
+  scores: Record<string, number | 'N/A'>;
   vitals: CoreWebVitals;
 };

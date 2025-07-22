@@ -1,8 +1,8 @@
-import prompts from "prompts";
-import chalk from "chalk";
-import { Session, Strategy } from "../config/types";
-import { FileUtils } from "../utils/file";
-import { InputValidator } from "../utils/validator";
+import prompts from 'prompts';
+import chalk from 'chalk';
+import { Session, Strategy } from '../config/types';
+import { FileUtils } from '../utils/file';
+import { InputValidator } from '../utils/validator';
 
 export class UserInterface {
   private fileUtils = new FileUtils();
@@ -15,22 +15,22 @@ export class UserInterface {
     isNewSession: boolean;
   }> {
     const { action } = await prompts({
-      type: "select",
-      name: "action",
-      message: chalk.white("What would you like to do?"),
+      type: 'select',
+      name: 'action',
+      message: chalk.white('What would you like to do?'),
       choices: [
-        { title: "New analysis", value: "new" },
+        { title: 'New analysis', value: 'new' },
         ...(sessions.length > 0
-          ? [{ title: "Reuse previous session", value: "reuse" }]
+          ? [{ title: 'Reuse previous session', value: 'reuse' }]
           : []),
       ],
     });
 
-    if (action === "reuse" && sessions.length > 0) {
+    if (action === 'reuse' && sessions.length > 0) {
       const { sessionIndex } = await prompts({
-        type: "select",
-        name: "sessionIndex",
-        message: chalk.white("Select a previous session:"),
+        type: 'select',
+        name: 'sessionIndex',
+        message: chalk.white('Select a previous session:'),
         choices: sessions.map((session, index) => ({
           title: `${session.baseUrl} (${session.slugs.length} URLs, ${session.strategy}) - ${new Date(session.timestamp).toLocaleDateString()}`,
           value: index,
@@ -38,7 +38,7 @@ export class UserInterface {
       });
 
       if (sessionIndex === undefined) {
-        console.log(chalk.red("❌ No session selected. Exiting."));
+        console.log(chalk.red('❌ No session selected. Exiting.'));
         process.exit(1);
       }
 
@@ -46,8 +46,8 @@ export class UserInterface {
 
       console.log(
         chalk.green(
-          `\n✓ Loaded session: ${selectedSession.baseUrl} (${selectedSession.slugs.length} URLs)`
-        )
+          `\n✓ Loaded session: ${selectedSession.baseUrl} (${selectedSession.slugs.length} URLs)`,
+        ),
       );
 
       return {
@@ -68,12 +68,12 @@ export class UserInterface {
 
   private async getBaseUrl(): Promise<string> {
     const { input } = await prompts({
-      type: "text",
-      name: "input",
-      message: chalk.white("Enter URL or domain:"),
+      type: 'text',
+      name: 'input',
+      message: chalk.white('Enter URL or domain:'),
       validate: (v) => {
         const trimmed = v.trim();
-        if (!trimmed) return "URL is required";
+        if (!trimmed) return 'URL is required';
 
         const hasProtocol = /^https?:\/\//i.test(trimmed);
         const tryUrl = hasProtocol ? trimmed : `https://${trimmed}`;
@@ -92,12 +92,12 @@ export class UserInterface {
 
     if (!hasProtocol) {
       const { scheme } = await prompts({
-        type: "select",
-        name: "scheme",
-        message: chalk.white("Choose a protocol:"),
+        type: 'select',
+        name: 'scheme',
+        message: chalk.white('Choose a protocol:'),
         choices: [
-          { title: "https:// (recommended)", value: "https" },
-          { title: "http://", value: "http" },
+          { title: 'https:// (recommended)', value: 'https' },
+          { title: 'http://', value: 'http' },
         ],
         initial: 0,
       });
@@ -110,12 +110,12 @@ export class UserInterface {
 
   private async getStrategy(): Promise<Strategy> {
     const { selectedStrategy } = await prompts({
-      type: "select",
-      name: "selectedStrategy",
-      message: chalk.white("Select testing strategy:"),
+      type: 'select',
+      name: 'selectedStrategy',
+      message: chalk.white('Select testing strategy:'),
       choices: [
-        { title: "📱 Mobile", value: "mobile" },
-        { title: "🖥️  Desktop", value: "desktop" },
+        { title: '📱 Mobile', value: 'mobile' },
+        { title: '🖥️  Desktop', value: 'desktop' },
       ],
     });
     return selectedStrategy;
@@ -124,15 +124,15 @@ export class UserInterface {
   private async getSlugs(): Promise<string[]> {
     const { useSlugFile, slugFile } = await prompts([
       {
-        type: "confirm",
-        name: "useSlugFile",
-        message: chalk.white("Load URLs from a file?"),
+        type: 'confirm',
+        name: 'useSlugFile',
+        message: chalk.white('Load URLs from a file?'),
         initial: false,
       },
       {
-        type: (prev) => (prev ? "text" : null),
-        name: "slugFile",
-        message: chalk.white("Path to URL file (.txt or .json):"),
+        type: (prev) => (prev ? 'text' : null),
+        name: 'slugFile',
+        message: chalk.white('Path to URL file (.txt or .json):'),
         validate: (v) => this.fileUtils.validateFile(v),
       },
     ]);
@@ -145,16 +145,16 @@ export class UserInterface {
   }
 
   private async getManualSlugs(): Promise<string[]> {
-    console.log("");
+    console.log('');
 
     const slugs: string[] = [];
-    chalk.blue("Enter URL paths/slugs (empty input to finish):");
+    chalk.blue('Enter URL paths/slugs (empty input to finish):');
 
     while (true) {
       const { slug } = await prompts({
-        type: "text",
-        name: "slug",
-        message: chalk.gray("Path/Slug (e.g., /, /about, /contact):"),
+        type: 'text',
+        name: 'slug',
+        message: chalk.gray('Path/Slug (e.g., /, /about, /contact):'),
       });
 
       if (!slug?.trim()) break;
@@ -162,30 +162,30 @@ export class UserInterface {
     }
 
     if (!slugs.length) {
-      slugs.push("/");
-      console.log(chalk.yellow("\nNo paths provided, testing homepage only."));
+      slugs.push('/');
+      console.log(chalk.yellow('\nNo paths provided, testing homepage only.'));
     }
 
     return slugs;
   }
 
   async getExportPreferences(): Promise<string[]> {
-    console.log("");
+    console.log('');
 
     const { exportFormat } = await prompts({
-      type: "multiselect",
-      name: "exportFormat",
-      message: chalk.white("Select export formats:"),
+      type: 'multiselect',
+      name: 'exportFormat',
+      message: chalk.white('Select export formats:'),
       choices: [
-        { title: "📄 JSON & CSV", value: "data", selected: false },
-        { title: "📝 Markdown Report", value: "markdown", selected: true },
+        { title: '📄 JSON & CSV', value: 'data', selected: false },
+        { title: '📝 Markdown Report', value: 'markdown', selected: true },
       ],
-      hint: "- Space to select. Enter to confirm\n",
+      hint: '- Space to select. Enter to confirm\n',
     });
 
     if (!exportFormat || exportFormat.length === 0) {
       console.log(
-        chalk.yellow("\n⚠️  No export format selected. Nothing will be saved.")
+        chalk.yellow('\n⚠️  No export format selected. Nothing will be saved.'),
       );
       return [];
     }
@@ -195,9 +195,9 @@ export class UserInterface {
 
   async askToOpenReport(): Promise<boolean> {
     const { openReport } = await prompts({
-      type: "confirm",
-      name: "openReport",
-      message: chalk.white("Open markdown report?"),
+      type: 'confirm',
+      name: 'openReport',
+      message: chalk.white('Open markdown report?'),
       initial: false,
     });
 
