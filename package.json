@@ -1,6 +1,6 @@
 {
   "name": "@msafdev/pagespeed",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Enhanced PageSpeed Insights Checker, now with a CLI",
   "main": "src/index.ts",
   "bin": {
