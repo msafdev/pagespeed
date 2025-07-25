@@ -1,6 +1,4 @@
-<div align="center">
-  <img width="100%" src="https://github.com/msafdev/pagespeed/blob/master/assets/screenshot.png" alt="cover" />
-</div>
+<img width="100%" src="https://github.com/msafdev/pagespeed/blob/main/assets/screenshot.png" alt="screenshot" />
 
 # PageSpeed Insights Checker
 
