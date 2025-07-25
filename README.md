@@ -1,3 +1,7 @@
+<div align="center">
+  <img width="100%" src="https://github.com/msafdev/pagespeed/blob/master/assets/screenshot.png" alt="cover" />
+</div>
+
 # PageSpeed Insights Checker
 
 A simple command-line tool for analyzing website performance using Google PageSpeed Insights API.
