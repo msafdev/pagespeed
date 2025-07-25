@@ -135,8 +135,8 @@ npx @msafdev/pagespeed sessions list
 npx @msafdev/pagespeed sessions run 1
 npx @msafdev/pagespeed sessions run example.com
 
-# Run session with exports
-npx @msafdev/pagespeed sessions run 1 -e markdown data
+# Run session with custom exports
+npx @msafdev/pagespeed sessions run 1 -e markdown -f custom-name
 ```
 
 ### Export Formats
@@ -162,9 +162,6 @@ Generates: `./results/TIMESTAMP/results.md`
 #### Environment Variables
 
 ```bash
-# Use yargs parser instead of commander
-CLI_PARSER=yargs @msafdev/pagespeed analyze https://example.com
-
 # Set default API key
 PAGESPEED_API_KEY=your-api-key @msafdev/pagespeed analyze https://example.com
 ```
@@ -183,19 +180,7 @@ for site in "${sites[@]}"; do
 done
 ```
 
-**Weekly performance monitoring:**
-
-```bash
-#!/bin/bash
-# weekly-check.sh
-npx @msafdev/pagespeed analyze https://production.example.com \
-  -s ./critical-pages.txt \
-  -e markdown \
-  -f $(date +%Y-%m-%d) \
-  --open
-```
-
-#### Configuration File Support
+#### TODO: Configuration File Support
 
 Create `.pagespeedrc.json` in your project root:
 
@@ -214,12 +199,6 @@ Create `.pagespeedrc.json` in your project root:
 ```bash
 # Development with TypeScript
 npm run dev analyze https://example.com
-
-# Use yargs parser
-npm run cli:yargs analyze https://example.com
-
-# Use commander parser (default)
-npm run cli:commander analyze https://example.com
 
 # Interactive mode
 npm run interactive
